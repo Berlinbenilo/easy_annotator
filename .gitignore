@@ -81,3 +81,5 @@ logs/
 *.sqlite
 
 notes
+
+image_data/

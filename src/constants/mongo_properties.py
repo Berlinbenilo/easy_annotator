@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 
@@ -11,4 +12,3 @@ def get_mongo_credentials():
     MONGO_PORT = os.environ['MONGO_PORT'] if os.environ.get('MONGO_PORT') else 27017
     MONGO_DB_NAME = os.environ['MONGO_DB_NAME'] if os.environ.get('MONGO_DB_NAME') else 'annotator'
     return MONGO_USER, MONGO_PASSWORD, MONGO_HOST, MONGO_PORT, MONGO_DB_NAME
-

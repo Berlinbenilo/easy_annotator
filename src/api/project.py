@@ -1,11 +1,9 @@
 from uuid import uuid4
 
-from typing import Optional
 from fastapi import APIRouter, Form
 from fastapi.responses import JSONResponse
-from pydantic import BaseModel
 
-from src.entities.od_model import ImageModel
+from src.entities.od_model import ProjectModel
 
 router = APIRouter(
     prefix="/project",
@@ -13,28 +11,36 @@ router = APIRouter(
 )
 
 
-class ImageShortView(BaseModel):
-    image_id: Optional[str]
-
-
 @router.post('/create')
 async def create_project(project_name: str = Form(None)):
-    entities = ImageModel(project_name=project_name, project_id=str(uuid4()))
-    await ImageModel.insert_one(entities)
-    return JSONResponse(content={"message": "project created successfully"})
+    project_id = str(uuid4())
+    entities = ProjectModel(project_name=project_name, project_id=project_id)
+    await ProjectModel.insert_one(entities)
+    return JSONResponse(content={"message": "project created successfully", "project_id": project_id})
 
 
-@router.get('/fetch/images')
-async def get_all_images(project_id: str = Form(), page: int = Form(..., gt=0), limit: int = Form(..., gt=0)):
-    skip = (page - 1) * limit
-    images = await ImageModel.find_many({"project_id": project_id}).skip(skip).limit(limit).project(ImageShortView).to_list()
-    total_images = await ImageModel.find_many({"project_id": project_id}).count()
-    total_pages = (total_images + limit - 1) // limit
+@router.put('/update')
+async def update_project(project_id: str = Form(), project_name: str = Form()):
+    entity = await ProjectModel.find_one(ProjectModel.project_id == project_id)
+    if entity is None:
+        return JSONResponse(content={"message": "project not found"}, status_code=404)
+    await entity.update({"$set": {ProjectModel.project_name: project_name}})
+    return JSONResponse(content={"message": "project updated successfully"})
 
-    return {
-        "page": page,
-        "limit": limit,
-        "total_images": total_images,
-        "total_pages": total_pages,
-        "images": images
-    }
+
+@router.delete('/delete')
+async def delete_project(project_id: str = Form()):
+    await ProjectModel.find_one(ProjectModel.project_id == project_id).delete()
+    return {"message": "Project deleted successfully..!"}
+
+
+@router.put('/fetch')
+async def get_project(project_id: str = Form()):
+    result = await ProjectModel.find(ProjectModel.project_id == project_id).to_list()
+    return result
+
+
+@router.get('/fetch_all')
+async def get_project():
+    projects = await ProjectModel.find({}).to_list()
+    return projects

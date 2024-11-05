@@ -1,1 +1,1 @@
-static_path = './static/'
+static_path = './image_data/'

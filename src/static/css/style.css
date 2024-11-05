@@ -1,0 +1,126 @@
+.main-heading {
+    color:black;
+    text-align: center;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  font-family: Arial;
+}
+
+/* Links inside the navbar */
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* The dropdown container */
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+/* Dropdown button */
+.dropdown .file-dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 14px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+/* Add a red background color to navbar links on hover */
+.navbar a:hover, .dropdown:hover .file-dropbtn {
+  background-color: red;
+}
+
+/* Dropdown content (hidden by default) */
+.file-dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.file-dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+/* Add a grey background color to dropdown links on hover */
+.file-dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .file-dropdown-content {
+  display: block;
+}
+
+.leftsidebar_accordion_panel.show {
+    display: block;
+}
+
+#img_fn_list {
+    font-size: small;
+    overflow: scroll;
+    min-height: 10rem;
+    max-height: 30rem;
+}
+
+#leftsidebar {
+    display: table-cell;
+    width: 250px;
+    z-index: 10;
+    vertical-align: top;
+}
+
+.middle-pannel {
+    width: 400px; /* Adjust width as needed */
+    height: 300px; /* Set fixed height */
+    float: left; /* Align to the left side */
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #f4f4f4; /* Light background for contrast */
+    border: 1px solid #ccc;
+}
+
+/* Sidebar within the middle panel */
+.left-sidebar {
+    max-height: 100%; /* Fill entire middle panel */
+    overflow-y: auto; /* Enables vertical scrolling if content overflows */
+}
+
+.image-name {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Hover effect for image names */
+.image-name:hover {
+    background-color: #f0f0f0;
+}
+
+/* Highlight selected image name */
+.image-name.selected {
+    background-color: #4CAF50; /* Change this to your preferred color */
+    color: #fff;
+    font-weight: bold;
+}

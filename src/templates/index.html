@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Annotator</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='css/style.css') }}">
+</head>
+<body>
+    <h1 class = "main-heading">Welcome to Auto annotator app..!</h1>
+    <div class="navbar">
+        <a href="#home", onclick="show_home()">Home</a>
+        <div class="dropdown">
+            <button class="file-dropbtn">Files
+                <i class="fa fa-caret-down"></i>
+            </button>
+            <div class="file-dropdown-content">
+                <a href="#" onclick="upload_image()">upload image</a>
+                <a href="#" onclick="upload_folder()">upload folder</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="middle-pannel">
+        <div class="left-sidebar" id="img_fn_list">
+            <div class="leftsidebar_accordion_panel show" id="img_fn_list_panel">
+<!--                <input type="text" placeholder="Filter using regular expression" oninput="img_fn_list_onregex()" id="img_fn_list_regex">-->
+<!--                <div id="img_fn_list"></div>-->
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', path='js/script.js') }}"></script>
+</body>
+</html>
